@@ -191,7 +191,9 @@ allowed_values = [
     "mile",
     "TEU-km",
     "container-moved",
-    "hour"
+    "hour",
+    "ml",
+    "g",
 ]
 
 
@@ -288,7 +290,8 @@ allowed_values = [
     "upstream-electricity_generation",
     "upstream-use_phase-transport",
     "upstream-use_phase-transport-transmission_and_distribution",
-    "upstream-electricity_generation-transmission_and_distribution"
+    "upstream-electricity_generation-transmission_and_distribution",
+    "cradle_to_grave",
 ]
 
 [[columns]]
@@ -315,7 +318,8 @@ allowed_values = [
     "STC-Nestra B.V.",
     "GEMIS",
     "GLEC",
-    "EEA"
+    "EEA",
+    "Shiseido"
 ]
 
 [[columns]]
