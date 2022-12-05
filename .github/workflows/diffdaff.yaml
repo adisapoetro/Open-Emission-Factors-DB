@@ -1,0 +1,55 @@
+name: Build and publish diff (using daff)
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  diffdaff:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: preview-${{ github.ref }}
+      cancel-in-progress: true
+    strategy:
+      matrix:
+        python: [ 3.9.12 ]
+    steps:
+      - name: Checkout pushed branch
+        uses: actions/checkout@v2
+        with:
+          path: this
+      - name: Checkout main branch
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.base_ref || 'main' }}
+          path: main
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: BSFishy/pip-action@v1
+        with:
+          packages: |
+            daff
+      - run: mkdir diff && daff --unordered --output diff/temp.html main/OpenEmissionFactorsDB.csv this/OpenEmissionFactorsDB.csv
+      - run: mkdir -p diff/${{ github.sha      }} && cp diff/temp.html diff/${{ github.sha      }}/diff.html
+      - run: mkdir -p diff/${{ github.ref_name }} && cp diff/temp.html diff/${{ github.ref_name }}/diff.html
+      - run: rm diff/temp.html
+      - name: Publish diff
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          keep_files: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./diff/
+          destination_dir: diff
+      - name: 'Add comment to PR discussion thread'
+        uses: actions/github-script@v5
+        with:
+            github-token: ${{secrets.GITHUB_TOKEN}}
+            script: |
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: `[Diffdaff available](https://climatiq.github.io/Open-Emission-Factors-DB/diff/${{ github.ref_name }}/diff.html).`
+                });
