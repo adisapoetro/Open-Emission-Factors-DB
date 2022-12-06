@@ -58,6 +58,7 @@ allowed_values = [
     "Livestock Farming",
     "Timber and Forestry Products",
     "Construction",
+    "Facility",
     "Housing",
     "Infrastructure",
     "Maintenance and Repair",
@@ -194,6 +195,7 @@ allowed_values = [
     "hour",
     "ml",
     "g",
+    "m2",
 ]
 
 
@@ -319,7 +321,7 @@ allowed_values = [
     "GEMIS",
     "GLEC",
     "EEA",
-    "Shiseido"
+    "Shiseido",
 ]
 
 [[columns]]
