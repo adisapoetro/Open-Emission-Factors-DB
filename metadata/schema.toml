@@ -294,6 +294,7 @@ allowed_values = [
     "upstream-use_phase-transport-transmission_and_distribution",
     "upstream-electricity_generation-transmission_and_distribution",
     "cradle_to_grave",
+    "upstream-end_of_life"
 ]
 
 [[columns]]
