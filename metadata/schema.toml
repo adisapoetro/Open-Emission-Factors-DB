@@ -82,6 +82,7 @@ allowed_values = [
     "Education",
     "Electricity",
     "Energy Services",
+    "Facility",
     "Fuel",
     "Heat and Steam",
     "Electrical Equipment",
@@ -194,6 +195,7 @@ allowed_values = [
     "hour",
     "ml",
     "g",
+    "m2"
 ]
 
 
