@@ -322,7 +322,8 @@ allowed_values = [
     "GEMIS",
     "GLEC",
     "EEA",
-    "Shiseido"
+    "Shiseido",
+    "Green-e"
 ]
 
 [[columns]]
