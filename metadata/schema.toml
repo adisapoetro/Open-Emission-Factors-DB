@@ -195,7 +195,8 @@ allowed_values = [
     "hour",
     "ml",
     "g",
-    "m2"
+    "m2",
+    "instance-hour"
 ]
 
 
